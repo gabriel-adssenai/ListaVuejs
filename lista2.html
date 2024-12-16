@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VuesLista2</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+</head>
+<body>
+   <div id="app">
+        <p>{{ ola }}</p>
+        <p v-if="booleano"><input v-model="nome" placeholder="Nome: "/></p>
+        <p id="nome">Bem-vindo {{ nome }}</p>
+        <h1>Contador: {{ contador }}</h1>
+        <p v-if="visualizar">{{ viu }}</p>
+        <button @click="ver">Ocultar</button>
+        <button @click="retangulo">Ocultar o campo Nome</button>
+        <button @click="incrementar">Incrementar</button>
+        <button @click="decrementar">Decrementar</button>
+        <ul>
+            <li v-for="item in a" :key="item.text">
+                {{ item.text }}
+            </li>
+        </ul>
+        <p>Lista do usuário</p>
+    <input v-model="valLista" type="text" placeholder="Adicionar à lista">
+    <button @click="addLista">Adicionar</button>
+    <button @click="removeLista">Remover o último</button>
+    <button @click="removeTudo">Remover toda a lista</button>
+    <ul>
+        <li v-for="(item, index) in listaF" :key="index">{{ item.text }}</li>
+    </ul>
+        <p id="verde">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum reprehenderit facere aut? Praesentium nam dolor, earum alias omnis doloribus ducimus ex adipisci saepe laboriosam numquam sequi magni, est natus blanditiis.
+        </p>
+        </div>
+    <script>
+    new Vue({
+        el: '#app',
+        data: {
+            ola: 'Bem Vindo ao Vue.js',
+            contador: 0,
+            visualizar: false,
+            booleano: true,
+            viu: "Visualizar?",
+            a: [
+                {text: "Eduardo"},
+                {text: "Gabriel"},
+                {text: "Gabis"},
+                {text: "SeiLaEU"}
+            ],
+            nome: "",
+            valLista: '',
+            listaF: [],
+            mensagem2: 'Bem vindo',
+            texto: 'Texto genéricão'
+            },
+        methods: {
+            incrementar() {
+                this.contador++;
+            },
+            decrementar() {
+                this.contador--;
+            },
+            ver() {
+                this.visualizar = !this.visualizar;
+            },
+            retangulo() {
+                this.booleano = !this.booleano;
+            },
+            addLista() {
+                if (this.valLista) {
+                    this.listaF.push({ text: this.valLista });
+                    this.valLista = '';
+                }
+            },
+            removeLista() {
+                this.listaF.pop()
+            },
+            removeTudo(){
+                this.listaF = []
+            }
+        }
+    });
+    </script>
+    <style>
+        h3 {
+            margin: 40px 0 0;
+        }
+        
+        a {
+            color: #42b983;
+        }
+        #verde {
+            color: #42b983;
+        }
+    </style>
+</body>
+</html>
